@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Juicy Junction </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+ <style type="text/css">
+   
+    .cart_icon {
+  width: 40px;
+  height: 40px;
+  background-color: green;   /* default background */
+  border-radius: 50%;        /* circle background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.cart_icon svg {
+  width: 18px;
+  height: auto;
+  fill: #ffffff;             /* icon color */
+  transition: fill 0.3s ease;
+}
+
+.cart_icon:hover {
+  background-color: #1a001a;   /* hover background */
+  border: 1px solid green;
+}
+
+.cart_icon:hover svg {
+  fill: green;               /* hover icon color */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.cart-link {
+  position: relative;
+  display: inline-block;
+}
+
+/* Cart Modal Styles */
+.cart-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-modal-content {
+  background-color: white;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.cart-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1a001a;
+}
+
+.cart-modal-header h3 {
+  color: #1a001a;
+  margin: 0;
+}
+
+.close-cart {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a001a;
+  cursor: pointer;
+}
+
+.close-cart:hover {
+  color: green;
+}
+
+.cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-info {
+  flex: 2;
+}
+
+.cart-item-name {
+  font-weight: bold;
+  color: #1a001a;
+  margin-bottom: 5px;
+}
+
+.cart-item-price {
+  color: green;
+  font-weight: bold;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f5f5f5;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+.quantity-btn {
+  background-color: #1a001a;
+  color: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background-color: green;
+  transform: scale(1.1);
+}
+
+.quantity-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.remove-item {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+  background-color: #ff4444;
+  transform: scale(1.05);
+}
+
+.cart-total {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #1a001a;
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a001a;
+}
+
+.checkout-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #1a001a;
+  transform: scale(1.02);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 40px;
+  color: #666;
+  font-size: 18px;
+}
+
+.empty-cart svg {
+  width: 80px;
+  height: 80px;
+  fill: #ddd;
+  margin-bottom: 20px;
+}
+ </style>
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="images/hero-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Juicy Junction
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  mx-auto ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="menu.html">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="book.html">Book Table</a>
+              </li>
+            </ul>
+            <div class="user_option">
+              <a href="login.html" class="user_link">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </a>
+              <a class="cart-link" href="#" id="cartLink">
+                <span class="cart_icon">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                    <g>
+                      <g>
+                        <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                      c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                      </g>
+                    </g>
+                    <g>
+                      <g>
+                        <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                      C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                      c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                      C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                      </g>
+                    </g>
+                    <g>
+                      <g>
+                        <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                      c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                      </g>
+                    </g>
+                  </svg>
+                </span>
+                <span class="cart-badge" id="cartCount">0</span>
+              </a>
+              
+              <a href="" class="order_online">
+                Order Online
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+<section class="slider_section ">
+  <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-7 col-lg-6 ">
+              <div class="detail-box">
+                <h1>
+                  Fresh Juices & Smoothies
+                </h1>
+                <p>
+                  Enjoy 100% fresh and natural juices made from handpicked fruits. Refresh your body with healthy, delicious blends every day.
+                </p>
+                <div class="btn-box">
+                  <a href="#menu" class="btn1">
+                    View Menu
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item ">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-7 col-lg-6 ">
+              <div class="detail-box">
+                <h1>
+                  Shakes & Fruit Blends
+                </h1>
+                <p>
+                  From creamy milkshakes to energizing smoothies, our blends are perfect for taste, health, and happiness.
+                </p>
+                <div class="btn-box">
+                  <a href="#" 
+                    class="btn1 add-to-cart"
+                    data-id="1"
+                    data-name="Shakes & Fruit Blends"
+                    data-price="299"
+                    data-image="images/f1.png">
+                    Order Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-7 col-lg-6 ">
+              <div class="detail-box">
+                <h1>
+                  Healthy • Fresh • Delicious
+                </h1>
+                <p>
+                  Boost your energy with detox drinks, protein smoothies, and fresh fruit juices made just for you.
+                </p>
+                <div class="btn-box">
+                  <a href="#contact" class="btn1">
+                    Visit Our Café
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <ol class="carousel-indicators">
+        <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+        <li data-target="#customCarousel1" data-slide-to="1"></li>
+        <li data-target="#customCarousel1" data-slide-to="2"></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+    <!-- end slider section -->
+  </div>
+
+  <!-- offer section -->
+
+  <section class="offer_section layout_padding-bottom">
+    <div class="offer_container">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-6  ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/o1.jpg" alt="" style="object-fit: cover;">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Tasty Thursdays
+                </h5>
+                <h6>
+                  <span>20%</span> Off
+                </h6>
+                <a href="#" class="add-to-cart" data-id="offer1" data-name="Tasty Thursdays Combo" data-price="449" data-image="images/o1.jpg">
+                  Order Now 
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6  ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/o2.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Pizza Days
+                </h5>
+                <h6>
+                  <span>15%</span> Off
+                </h6>
+                <a href="#" class="add-to-cart" data-id="offer2" data-name="Pizza Days Combo" data-price="649" data-image="images/o2.jpg">
+                  Order Now 
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end offer section -->
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2 style="color: #1a001a;">
+          Our Menu
+        </h2>
+      </div>
+
+      <ul class="filters_menu">
+        <li class="active" data-filter="*">All</li>
+        <li data-filter=".burger">Fresh Fruit Juices</li>
+        <li data-filter=".pizza">Smoothies</li>
+        <li data-filter=".pasta">Dessert Milkshakes</li>
+        <li data-filter=".fries">Detox & Healthy Drinks</li>
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid">
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f1.png" alt="Berry Blast Smoothie">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Berry Blast Smoothie
+                  </h5>
+                  <p>
+                    Berry Blast Smoothie is a refreshing blend of mixed berries, bursting with sweet and tangy flavors in every sip.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹50
+                    </h6>
+                    <a href="#" class="add-to-cart" data-id="berry-smoothie" data-name="Berry Blast Smoothie" data-price="250" data-image="images/f1.png">
+                      <span class="cart_icon">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                           c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                           C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                           c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                           C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                           c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all burger">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f2.png" alt="Pomegranate Juice">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Pomegranate Juice
+                  </h5>
+                  <p>
+                    Pomegranate Juice is a refreshing and vibrant drink made from fresh pomegranates, rich in antioxidants and natural sweetness.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹50
+                    </h6>
+                     <a href="#" class="add-to-cart" data-id="pomegranate-juice" data-name="Pomegranate Juice" data-price="200" data-image="images/f2.png">
+                       <span class="cart_icon">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                           c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                           C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                           c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                           C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                           c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f3.png" alt="Mango & Banana Smoothie">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Mango & Banana Smoothie
+                  </h5>
+                  <p>
+                    Mango & Banana Smoothie is a smooth and creamy blend of ripe bananas and juicy mangoes, creating a naturally sweet and refreshing drink. 
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹60
+                    </h6>
+                      <a href="#" class="add-to-cart" data-id="mango-banana-smoothie" data-name="Mango & Banana Smoothie" data-price="280" data-image="images/f3.png">
+                        <span class="cart_icon">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pasta">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f4.png" alt="KitKat Crunch Shake">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    KitKat Crunch Shake
+                  </h5>
+                  <p>
+                    KitKat Crunch Shake is a rich and creamy milkshake blended with crunchy KitKat chocolate pieces for the perfect sweet bite. 
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹70
+                    </h6>
+                      <a href="#" class="add-to-cart" data-id="kitkat-shake" data-name="KitKat Crunch Shake" data-price="320" data-image="images/f4.png">
+                        <span class="cart_icon">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all fries">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f5.png" alt="Lemon Detox Drink">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Lemon Detox Drink
+                  </h5>
+                  <p>
+                    A refreshing lemon detox drink that cleanses your body, boosts digestion, and leaves you feeling energized and fresh.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹40
+                    </h6>
+                    <a href="#" class="add-to-cart" data-id="lemon-detox" data-name="Lemon Detox Drink" data-price="180" data-image="images/f5.png">
+                      <span class="cart_icon">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                           c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                           C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                           c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                           C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                           c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f6.png" alt="Choco Smoothie">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Choco Smoothie
+                  </h5>
+                  <p>
+                   Choco Smoothie is a thick and creamy blend of rich chocolate and chilled milk, perfect for a smooth and satisfying treat.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹60
+                    </h6>
+                    <a href="#" class="add-to-cart" data-id="choco-smoothie" data-name="Choco Smoothie" data-price="280" data-image="images/f6.png">
+                      <span class="cart_icon">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                          <g>
+                            <g>
+                              <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                           c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                           C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                           c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                           C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                            </g>
+                          </g>
+                          <g>
+                            <g>
+                              <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                           c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all burger">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/mango.png" alt="Mango Juice">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Mango Juice
+                  </h5>
+                  <p>
+                    Fuel Your day with a vibrant boost of vitamin C and antioxidants. Our 100% pure mango Juice.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹50
+                    </h6>
+                      <a href="#" class="add-to-cart" data-id="mango-juice" data-name="Mango Juice" data-price="150" data-image="images/mango.png">
+                        <span class="cart_icon">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all burger">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f8.png" alt="Kiwi Juice">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Kiwi Juice
+                  </h5>
+                  <p>
+                    Kiwi Juice is a refreshing and tangy drink made from fresh kiwi, bursting with natural flavor and vitamin-rich goodness. 🥝
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹40
+                    </h6>
+                      <a href="#" class="add-to-cart" data-id="kiwi-juice" data-name="Kiwi Juice" data-price="180" data-image="images/f8.png">
+                        <span class="cart_icon">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pasta">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="images/f9.png" alt="Choco Lava Milkshake">
+                </div>
+                <div class="detail-box" style="background-color:#1a001a;">
+                  <h5>
+                    Choco Lava Milkshake
+                  </h5>
+                  <p>
+                    Choco Lava Milkshake is a rich and creamy chocolate shake with a gooey molten chocolate flavor that melts in every sip.
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ₹70
+                    </h6>
+                      <a href="#" class="add-to-cart" data-id="choco-lava" data-name="Choco Lava Milkshake" data-price="350" data-image="images/f9.png">
+                        <span class="cart_icon">
+                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                            <g>
+                              <g>
+                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="#menu">
+          View More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end food section -->
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="images/about-img.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box" style="background-color: ;">
+            <div class="heading_container">
+              <h2>
+                We Are Juicy Junction
+              </h2>
+            </div>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
+              the middle of text. All
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Book A Table
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form action="">
+              <div>
+                <input type="text" class="form-control" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Your Email" />
+              </div>
+              <div>
+                <select class="form-control nice-select wide">
+                  <option value="" disabled selected>
+                    How many persons?
+                  </option>
+                  <option value="">
+                    2
+                  </option>
+                  <option value="">
+                    3
+                  </option>
+                  <option value="">
+                    4
+                  </option>
+                  <option value="">
+                    5
+                  </option>
+                </select>
+              </div>
+              <div>
+                <input type="date" class="form-control">
+              </div>
+              <div class="btn_box">
+                <button>
+                  Book Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="map_container ">
+            <div id="googleMap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>
+          What Says Our Customers
+        </h2>
+      </div>
+      <div class="carousel-wrap row ">
+        <div class="owl-carousel client_owl-carousel">
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <h6>
+                  Moana Michell
+                </h6>
+                <p>
+                  magna aliqua
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="images/client1.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                </p>
+                <h6>
+                  Mike Hamell
+                </h6>
+                <p>
+                  magna aliqua
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="images/client2.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h3>Your Cart (<span id="cartItemCount">0</span> items)</h3>
+        <span class="close-cart" id="closeCart">&times;</span>
+      </div>
+      <div id="cartItemsContainer"></div>
+    </div>
+  </div>
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <h4>
+              Contact Us
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo">
+              Juicy Junction
+            </a>
+            <p>
+              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+            </p>
+            <div class="footer_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <h4>
+            Opening Hours
+          </h4>
+          <p>
+            Everyday
+          </p>
+          <p>
+            10.00 Am -10.00 Pm
+          </p>
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a><br><br>
+          &copy; <span id="displayYear"></span> Distributed By
+          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+  <script>
+    // Cart functionality
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Update cart count
+    function updateCartCount() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cartCount").innerText = totalItems;
+      document.getElementById("cartItemCount").innerText = totalItems;
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    // Add to cart
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const product = {
+          id: this.dataset.id,
+          name: this.dataset.name,
+          price: parseFloat(this.dataset.price),
+          image: this.dataset.image,
+          quantity: 1
+        };
+
+        // Check if item already exists in cart
+        const existingItem = cart.find(item => item.id === product.id);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push(product);
+        }
+
+        saveCart();
+        
+        // Show success message
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background-color: green;
+          color: white;
+          padding: 15px 25px;
+          border-radius: 5px;
+          z-index: 1001;
+          animation: slideIn 0.3s ease;
+        `;
+        toast.textContent = product.name + ' added to cart!';
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+          toast.remove();
+        }, 2000);
+      });
+    });
+
+    // Cart Modal functionality
+    const cartModal = document.getElementById("cartModal");
+    const cartLink = document.getElementById("cartLink");
+    const closeCart = document.getElementById("closeCart");
+
+    function displayCartItems() {
+      const container = document.getElementById("cartItemsContainer");
+      
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <p>Your cart is empty</p>
+            <p style="font-size: 14px; color: #999;">Add some delicious items to get started!</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '<ul class="cart-items">';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        html += `
+          <li class="cart-item">
+            <div class="cart-item-image">
+              <img src="${item.image}" alt="${item.name}" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">₹${item.price}</div>
+            </div>
+            <div class="cart-item-actions">
+              <div class="cart-item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                <span class="quantity-value">${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+              <button class="remove-item" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </li>
+        `;
+      });
+
+      html += '</ul>';
+      html += `<div class="cart-total">Total: ₹${total.toFixed(2)}</div>`;
+      html += '<button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>';
+
+      container.innerHTML = html;
+    }
+
+    window.updateQuantity = function(index, change) {
+      cart[index].quantity += change;
+      
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      
+      saveCart();
+      displayCartItems();
+    };
+
+    window.removeItem = function(index) {
+      cart.splice(index, 1);
+      saveCart();
+      displayCartItems();
+    };
+
+    window.checkout = function() {
+      alert("Thank you for your order! 🎉\n\nTotal: ₹" + 
+            cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2) + 
+            "\n\nThis is a demo checkout. Your order has been placed successfully!");
+      cart = [];
+      saveCart();
+      displayCartItems();
+      cartModal.style.display = "none";
+    };
+
+    // Open cart modal
+    cartLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      displayCartItems();
+      cartModal.style.display = "flex";
+    });
+
+    // Close cart modal
+    closeCart.addEventListener("click", function() {
+      cartModal.style.display = "none";
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener("click", function(e) {
+      if (e.target === cartModal) {
+        cartModal.style.display = "none";
+      }
+    });
+
+    // Add animation style
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Load cart count on page load
+    updateCartCount();
+  </script>
+
+</body>
+
+</html>

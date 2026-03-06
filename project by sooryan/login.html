@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Juicy Junction - Login & Register</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet"/>
+  
+  <style type="text/css">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .auth-container {
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .auth-header .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1a001a;
+      margin-bottom: 10px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .auth-header h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .auth-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 15px 0;
+      cursor: pointer;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .auth-tab.active {
+      color: green;
+    }
+
+    .auth-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: green;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    .auth-form {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 16px;
+    }
+
+    .form-control {
+      height: 50px;
+      padding: 10px 15px 10px 45px;
+      border: 2px solid #eee;
+      border-radius: 25px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      border-color: green;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 128, 0, 0.1);
+    }
+
+    .form-control::placeholder {
+      color: #aaa;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      font-size: 16px;
+    }
+
+    .password-toggle:hover {
+      color: green;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      color: #666;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: green;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn-auth {
+      background: green;
+      color: white;
+      border: none;
+      height: 50px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .btn-auth:hover {
+      background: #1a001a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 128, 0, 0.3);
+    }
+
+    .social-login {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-login p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .social-login p::before,
+    .social-login p::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .social-login p::before {
+      left: 0;
+    }
+
+    .social-login p::after {
+      right: 0;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background: green;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .alert {
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .alert.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: flex;
+    }
+
+    .alert.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: flex;
+    }
+
+    .alert i {
+      font-size: 18px;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-home a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .back-home a:hover {
+      color: green;
+    }
+
+    .back-home i {
+      margin-right: 5px;
+    }
+
+    /* Password strength indicator */
+    .password-strength {
+      margin-top: 5px;
+      height: 4px;
+      border-radius: 2px;
+      background: #eee;
+      position: relative;
+    }
+
+    .strength-bar {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease, background 0.3s ease;
+      width: 0;
+    }
+
+    .strength-text {
+      font-size: 12px;
+      margin-top: 5px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="index.html" class="logo">Juicy Junction</a>
+        <h2>Welcome Back! 👋</h2>
+        <p>Sign in to your account or create a new one</p>
+      </div>
+
+      <!-- Alert Message -->
+      <div class="alert" id="alertMessage">
+        <i class="fa" id="alertIcon"></i>
+        <span id="alertText"></span>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="switchTab('login')" id="loginTab">Login</div>
+        <div class="auth-tab" onclick="switchTab('register')" id="registerTab">Register</div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="auth-form active" id="loginForm">
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <i class="fa fa-envelope"></i>
+            <input type="email" class="form-control" placeholder="Email Address" id="loginEmail" required>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" class="form-control" placeholder="Password" id="loginPassword" required>
+            <span class="password-toggle" onclick="togglePassword('loginPassword')">
+             
+            </span>
+          </div>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox"> Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn-auth">Login</button>
+        </form>
+        <div class="social-login">
+          <p>Or login with</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fa fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Form -->
+      <div class="auth-form" id="registerForm">
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <i class="fa fa-user"></i>
+            <input type="text" class="form-control" placeholder="Full Name" id="regName" required>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-envelope"></i>
+            <input type="email" class="form-control" placeholder="Email Address" id="regEmail" required>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-phone"></i>
+            <input type="tel" class="form-control" placeholder="Phone Number" id="regPhone" required>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" class="form-control" placeholder="Password" id="regPassword" onkeyup="checkPasswordStrength()" required>
+            <span class="password-toggle" onclick="togglePassword('regPassword')">
+              
+            </span>
+            <div class="password-strength">
+              <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div class="strength-text" id="strengthText"></div>
+          </div>
+          <div class="form-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" class="form-control" placeholder="Confirm Password" id="regConfirmPassword" required>
+            <span class="password-toggle" onclick="togglePassword('regConfirmPassword')">
+            
+            </span>
+          </div>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" required> I agree to the <a href="#" style="color: green;">Terms & Conditions</a>
+            </label>
+          </div>
+          <button type="submit" class="btn-auth">Create Account</button>
+        </form>
+        <div class="social-login">
+          <p>Or register with</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fa fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="back-home">
+      <a href="index.html"><i class="fa fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Switch between login and register tabs
+    function switchTab(tab) {
+      const loginTab = document.getElementById('loginTab');
+      const registerTab = document.getElementById('registerTab');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+      } else {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+      }
+    }
+
+    // Toggle password visibility
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const icon = event.currentTarget.querySelector('i');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // Check password strength
+    function checkPasswordStrength() {
+      const password = document.getElementById('regPassword').value;
+      const strengthBar = document.getElementById('strengthBar');
+      const strengthText = document.getElementById('strengthText');
+      
+      let strength = 0;
+      
+      if (password.length >= 8) strength += 25;
+      if (password.match(/[a-z]+/)) strength += 25;
+      if (password.match(/[A-Z]+/)) strength += 25;
+      if (password.match(/[0-9]+/) || password.match(/[$@#&!]+/)) strength += 25;
+      
+      strengthBar.style.width = strength + '%';
+      
+      if (strength <= 25) {
+        strengthBar.style.background = '#ff4444';
+        strengthText.textContent = 'Weak password';
+      } else if (strength <= 50) {
+        strengthBar.style.background = '#ffbb33';
+        strengthText.textContent = 'Fair password';
+      } else if (strength <= 75) {
+        strengthBar.style.background = '#00C851';
+        strengthText.textContent = 'Good password';
+      } else {
+        strengthBar.style.background = '#007E33';
+        strengthText.textContent = 'Strong password';
+      }
+    }
+
+    // Show alert message
+    function showAlert(message, type) {
+      const alert = document.getElementById('alertMessage');
+      const icon = document.getElementById('alertIcon');
+      const text = document.getElementById('alertText');
+      
+      alert.className = 'alert ' + type;
+      icon.className = 'fa ' + (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle');
+      text.textContent = message;
+      
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 3000);
+    }
+
+    // Handle login form submission
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      
+      // Get users from localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Find user
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        // Store logged in user info
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        showAlert('Login successful! Redirecting...', 'success');
+        
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      } else {
+        showAlert('Invalid email or password!', 'error');
+      }
+    }
+
+    // Handle register form submission
+    function handleRegister(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const phone = document.getElementById('regPhone').value;
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+      
+      // Validate password match
+      if (password !== confirmPassword) {
+        showAlert('Passwords do not match!', 'error');
+        return;
+      }
+      
+      // Validate password strength
+      if (password.length < 8) {
+        showAlert('Password must be at least 8 characters long!', 'error');
+        return;
+      }
+      
+      // Get existing users
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Check if email already exists
+      if (users.some(u => u.email === email)) {
+        showAlert('Email already registered!', 'error');
+        return;
+      }
+      
+      // Create new user
+      const newUser = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        phone: phone,
+        password: password,
+        createdAt: new Date().toISOString()
+      };
+      
+      // Add to users array
+      users.push(newUser);
+      
+      // Save to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      showAlert('Registration successful! Please login.', 'success');
+      
+      // Switch to login tab after successful registration
+      setTimeout(() => {
+        switchTab('login');
+        document.getElementById('loginEmail').value = email;
+      }, 1500);
+    }
+
+    // Check if user is already logged in
+    window.onload = function() {
+      const currentUser = localStorage.getItem('currentUser');
+      if (currentUser && window.location.pathname.includes('login.html')) {
+        showAlert('You are already logged in! Redirecting...', 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      }
+    }
+  </script>
+
+  <!-- Add Font Awesome if not already included -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</body>
+
+</html>
