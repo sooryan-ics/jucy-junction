@@ -358,26 +358,26 @@ a:focus {
   color: currentColor; 
 
 }
-/*
+
 
 .slider_section .detail-box a {
-  display: inline-block;
-  padding: 10px 45px;
-  background-color: green;
-  color: #ffffff;
-  border-radius: 45px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  display: inline;
+  padding: 0;
+  background: none;
+  color: green;
   border: none;
-  margin-top: 10px;
+  border-radius: 0;
+  margin: 0;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: 0.3s;
 }
 
 .slider_section .detail-box a:hover {
-  background-color: white;
-  color: green;
-  border: 1px solid green;
+  color: #1a001a;
+  background: none;
 }
-*/
+
 .slider_section .img-box {
   width: 160px;             
   border-radius: 50%;       
