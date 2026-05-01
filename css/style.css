@@ -358,6 +358,7 @@ a:focus {
   color: currentColor; 
 
 }
+/*
 
 .slider_section .detail-box a {
   display: inline-block;
@@ -376,6 +377,7 @@ a:focus {
   color: green;
   border: 1px solid green;
 }
+*/
 .slider_section .img-box {
   width: 160px;             
   border-radius: 50%;       
