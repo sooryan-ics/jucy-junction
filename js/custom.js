@@ -68,3 +68,26 @@ $(".client_owl-carousel").owlCarousel({
         }
     }
 });
+$(document).ready(function () {
+
+  // Initialize Isotope
+  var $grid = $('.grid').isotope({
+    itemSelector: '.all',
+    layoutMode: 'fitRows'
+  });
+
+  // Filter items on click
+  $('.filters_menu li').on('click', function () {
+
+    $('.filters_menu li').removeClass('active');
+    $(this).addClass('active');
+
+    var filterValue = $(this).attr('data-filter');
+
+    $grid.isotope({
+      filter: filterValue
+    });
+
+  });
+
+});
